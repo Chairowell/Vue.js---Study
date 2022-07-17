@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./prism.css">
+    <script src="./prism.js"></script>
+    <script src="./vue.js"></script>
+    <title>Vue - Study</title>
+</head>
+<body>
+    
+    <!-- 
+        初识Vue:
+            1.想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象;
+            2.root容器里的代码依然符合html规范，只不过混入了一些特殊的Vue语法;
+            3.root容器里的代码被称为【Vue模板】;
+            4.Vue实例和容器是一一对应的:
+            5.真实开发中只有一个Vue实例，并且会配合着组件一起使用;
+            6.{{xxx}}中的xxx要写js衣达式，xxx可以自动读取到data中的所有属性;
+            7.一旦data中的数据发生改变，那么模板中用到该数据的地方也会自动更新;
+
+
+            注意区分: js表达式和js代码(语句)
+                1.表达式:个 表达式会生成 个值。可以放在任何一个制 要值的地方:
+                    (1). a
+                    (2). a+b
+                    (3). demo(1)
+                    (4). X === y ? 'a’: 'b'
+                2. js代码(语句)
+                    (1). if(){}
+                    (2). for(){}
+
+    -->
+    <!-- 插值语法 -->
+    <div id="root">
+        <h1>Hello,{{name1}}!</h1> <!-- {{}}是插值的意思 -->
+        <h2>Hello,{{name2.toUpperCase()}}!</h2>   <!-- .toUpperCase() 转换大写 -->
+    </div>
+    <pre><code class="language-javascript">
+        
+        Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示
+
+        //创建Vue实例       实例和容器一定是一一对应的，不能多对一或一对多
+        new Vue({
+            el:'#root',        //el用于指定当前Vue实例为哪个容器服务，值为css选择器字符串
+            data:{            //data中用于存储数据，数据供el所指定的容器去使用
+                name1:'Vue',
+                name2:'World',
+            },
+        })
+    </code></pre>
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示
+
+        //创建Vue实例       实例和容器一定是一一对应的，不能多对一或一对多
+        new Vue({
+            el:'#root',        //el用于指定当前Vue实例为哪个容器服务，值为css选择器字符串
+            data:{            //data中用于存储数据，数据供el所指定的容器去使用
+                name1:'Vue',
+                name2:'World',
+            },
+        })
+    </script>
+
+    <!-- 指令语法 -->
+    <div id="www">
+        <a v-bind:href="url">Go!</a>
+        <a :href="url">Go!</a>
+        <a v-bind:href="other.url">Go!</a>
+        <a :href="other.url">Go!</a>
+    </div>
+    <pre><code class="language-javascript">
+        new Vue({
+            el:'#www',
+            data:{
+                url:'http://www.chairo.cc',
+                other:{                         //多级数据结构
+                    url:'https://www.bilibili.com',
+                },
+            }
+        })
+    </code></pre>
+    <script type="text/javascript">
+        new Vue({
+            el:'#www',
+            data:{
+                url:'http://www.chairo.cc',
+                other:{                         //多级数据结构
+                    url:'https://www.bilibili.com',
+                },
+            }
+        })
+    </script>
+    
+    <!-- 
+
+        Vue模板语法有2大类:
+            1.插值语法:
+                功能:用于解析标签体内容。
+                写法: {{xxx}}， xxx是js表达式，且可以直接读取到data中的所有属性。
+            2.指令语法:
+                功能:用于解析标签(包括:标签属性、标签体内容、绑定事件.....)。
+                举例: v-bind:href="xxx" 或简写为 :href= "xxx". xxx同样 要写js表达式，
+                    且可以直接读取到data中的所有属性。
+                备注: Vue中有很多的指令，且形式都是: v-????.，此处我们只是拿v-bind举个例子。
+
+     -->
+
+</body>
+</html>
